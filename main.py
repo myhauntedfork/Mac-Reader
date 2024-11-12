@@ -66,7 +66,7 @@ def say(txt):
     except Exception as e:
         print(f"Error: {e}")
 
-print("What would you like your MAC to say? (type 'exit' to quit)")
+print("What would you like your Mac to say? (type 'exit' to quit)")
 while True:
     message = input(">> ")
     if message.lower() == "exit":
