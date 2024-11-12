@@ -3,6 +3,7 @@ import platform
 import re
 
 def say(txt):
+    
     slang = {
         r"\bidk\b": "I don't know",
         r"\bidek\b": "I don't even know",
@@ -58,17 +59,18 @@ def say(txt):
         txt = re.sub(slang, replacement, txt, flags=re.IGNORECASE)
 
     system = platform.system()
-    try:
-        if system == "Darwin":
-            subprocess.run(["say", txt])
-        else:
-            print("Error: The software is compatible only with Darwin (macOS) systems.")
-    except Exception as e:
-        print(f"Error: {e}")
+    
+    if system == "Darwin":
+        subprocess.run(["say", txt])
+    else:
+        print("Error: The software is compatible only with Darwin (macOS) systems.")
 
-print("What would you like your Mac to say? (type 'exit' to quit)")
-while True:
-    message = input(">> ")
-    if message.lower() == "exit":
-        break
-    say(message)
+try:
+    print("What would you like your Mac to say? (type 'exit' to quit)")
+    while True:
+        message = input(">> ")
+        if message.lower() == "exit":
+            break
+        say(message)
+except Exception as e:
+    print(f"Error: {e}")
